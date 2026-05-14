@@ -25,8 +25,6 @@ If you already created and activated a compatible environment manually:
 python -m pip install --no-cache-dir -r requirements.txt
 ```
 
-`requirement.txt` is also included as a duplicate dependency list for tools that expect that filename.
-
 ## Commands
 
 Validate the project:
