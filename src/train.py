@@ -14,6 +14,7 @@ def train_model(
     batch: int,
     project: str,
     name: str,
+    device: str | int | None = None,
 ) -> Path:
     os.environ.setdefault("YOLO_CONFIG_DIR", str(project_root / ".ultralytics"))
 
@@ -29,6 +30,9 @@ def train_model(
     data_yaml = write_dataset_yaml(project_root)
 
     print(f"Training on {report.image_count} images and {report.object_count} labeled objects.")
+    if device is not None:
+        print(f"Using training device: {device}")
+
     model = YOLO(model_name)
     results = model.train(
         data=str(data_yaml),
@@ -39,7 +43,7 @@ def train_model(
         name=name,
         exist_ok=True,
         seed=42,
-        device=None,
+        device=device,
     )
 
     save_dir = Path(getattr(results, "save_dir", Path(project) / name))

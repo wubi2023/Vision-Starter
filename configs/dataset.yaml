@@ -1,4 +1,4 @@
-path: D:/UncleRobot/starter
+path: /home/wb/Vision-Starter/Vision-Starter
 train: images
 val: images
 names:

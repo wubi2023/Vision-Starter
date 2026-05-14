@@ -11,6 +11,7 @@ def evaluate_video(
     show: bool,
     save: bool,
     output_path: Path,
+    device: str | int | None = None,
 ) -> Path | None:
     os.environ.setdefault("YOLO_CONFIG_DIR", str(Path.cwd() / ".ultralytics"))
 
@@ -29,6 +30,9 @@ def evaluate_video(
         raise FileNotFoundError(f"Video not found: {video_path}")
     if not show and not save:
         raise ValueError("Nothing to do: enable playback or pass --save.")
+
+    if device is not None:
+        print(f"Using inference device: {device}")
 
     model = YOLO(str(weights))
     capture = cv2.VideoCapture(str(video_path))
@@ -58,7 +62,11 @@ def evaluate_video(
             if not ok:
                 break
 
-            result = model.predict(frame, conf=conf, verbose=False)[0]
+            predict_args = {"conf": conf, "verbose": False}
+            if device is not None:
+                predict_args["device"] = device
+
+            result = model.predict(frame, **predict_args)[0]
             boxes = result.boxes
             if boxes is not None and len(boxes) > 0:
                 best_index = None
