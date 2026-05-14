@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import os
 from pathlib import Path
 
 from src.dataset import validate_dataset, write_dataset_yaml
@@ -14,6 +15,8 @@ def train_model(
     project: str,
     name: str,
 ) -> Path:
+    os.environ.setdefault("YOLO_CONFIG_DIR", str(project_root / ".ultralytics"))
+
     try:
         from ultralytics import YOLO
     except ImportError as exc:

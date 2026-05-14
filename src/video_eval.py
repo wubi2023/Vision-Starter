@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import os
 from pathlib import Path
 
 
@@ -11,6 +12,8 @@ def evaluate_video(
     save: bool,
     output_path: Path,
 ) -> Path | None:
+    os.environ.setdefault("YOLO_CONFIG_DIR", str(Path.cwd() / ".ultralytics"))
+
     try:
         import cv2
         from ultralytics import YOLO

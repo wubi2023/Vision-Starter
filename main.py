@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import os
 from pathlib import Path
 
 from src.dataset import validate_dataset, write_dataset_yaml
@@ -9,6 +10,7 @@ from src.video_eval import evaluate_video
 
 
 PROJECT_ROOT = Path(__file__).resolve().parent
+os.environ.setdefault("YOLO_CONFIG_DIR", str(PROJECT_ROOT / ".ultralytics"))
 
 
 def build_parser() -> argparse.ArgumentParser:

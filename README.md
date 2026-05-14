@@ -6,11 +6,11 @@ The original `images`, `labels`, and `colortest.mp4` files are not moved or modi
 
 ## Setup
 
-Install Python 3.12 first. The local helper script intentionally uses Python 3.12 because PyTorch and Ultralytics are more reliable on supported ML Python versions than on Python 3.14.
+This project keeps Python packages inside a local virtual environment. On this machine, the working environment is `.venv312`, created from a project-local Python 3.12 runtime in `.python`.
 
 ```powershell
 .\setup_env.ps1
-.\.venv\Scripts\Activate.ps1
+.\.venv312\Scripts\Activate.ps1
 ```
 
 If PowerShell blocks local scripts on your machine, run:
@@ -22,7 +22,7 @@ powershell.exe -ExecutionPolicy Bypass -File .\setup_env.ps1
 If you already created and activated a compatible environment manually:
 
 ```powershell
-python -m pip install -r requirements.txt
+python -m pip install --no-cache-dir -r requirements.txt
 ```
 
 `requirement.txt` is also included as a duplicate dependency list for tools that expect that filename.
