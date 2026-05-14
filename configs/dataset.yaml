@@ -1,4 +1,4 @@
-path: ..
+path: D:/UncleRobot/starter
 train: images
 val: images
 names:

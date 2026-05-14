@@ -86,11 +86,11 @@ def write_dataset_yaml(project_root: Path) -> Path:
     config_dir.mkdir(exist_ok=True)
     dataset_yaml = config_dir / "dataset.yaml"
 
-    # Ultralytics resolves train/val relative to path. Validation intentionally
-    # points at the same small dataset so all current images remain training data.
+    # Use an absolute path because Ultralytics resolves relative dataset paths
+    # from the current process directory on some Windows setups.
     yaml_text = "\n".join(
         [
-            "path: ..",
+            f"path: {project_root.as_posix()}",
             "train: images",
             "val: images",
             "names:",

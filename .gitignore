@@ -7,6 +7,7 @@ __pycache__/
 *.py[cod]
 
 runs/
+*.cache
 *.pt
 *.onnx
 *_openvino_model/
