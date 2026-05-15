@@ -63,6 +63,44 @@ Train, then evaluate:
 python main.py all
 ```
 
+## YOLO26 Commands
+
+Validate the YOLO26 workflow:
+
+```powershell
+python main_yolo26.py setup-check
+```
+
+Train YOLO26 with all labeled images:
+
+```powershell
+python main_yolo26.py train
+```
+
+Short YOLO26 smoke-test training:
+
+```powershell
+python main_yolo26.py train --epochs 1
+```
+
+Train YOLO26 on a CUDA device:
+
+```powershell
+python main_yolo26.py train --device 0
+```
+
+Play the YOLO26 evaluation video with the dot overlay:
+
+```powershell
+python main_yolo26.py eval-video
+```
+
+Train YOLO26, then evaluate:
+
+```powershell
+python main_yolo26.py all
+```
+
 ## Notes
 
 - The detector uses class `0` as `object`.
